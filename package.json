@@ -15,16 +15,18 @@
 	"types": "dist/index.d.ts",
 	"files": ["dist", "LICENSE", "README.md"],
 	"scripts": {
-		"build": "tsup",
-		"format": "biome format --write .",
+		"build": "tsc && tsup",
+		"format": "prettier --write **/*.{md,yaml} && pnpm biome format --write . && pnpm biome check --write .",
 		"lint": "biome lint --error-on-warnings --write .",
 		"prepublishOnly": "npm run -s build",
 		"postinstall": "lefthook install",
 		"test": "vitest run"
 	},
 	"prettier": {
+		"bracketSpacing": false,
 		"printWidth": 120,
-		"singleQuote": true
+		"singleQuote": true,
+		"useTabs": true
 	},
 	"dependencies": {
 		"pako": "2.1.0",
@@ -34,6 +36,7 @@
 		"@biomejs/biome": "1.8.3",
 		"@types/pako": "2.0.3",
 		"lefthook": "1.7.14",
+		"prettier": "3.3.3",
 		"tsup": "8.2.4",
 		"typescript": "5.5.4",
 		"vite": "5.4.2",
