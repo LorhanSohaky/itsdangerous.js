@@ -3,8 +3,20 @@ import {BadPayloadError, BadSignatureError} from './errors.ts';
 import {Signer, type SignerOptions, makeKeysList} from './signer.ts';
 import type {$TsFixMe, SecretKey, StringBuffer} from './types.ts';
 
+/**
+ * The default serializer to use for serializing and deserializing data. It
+ */
 export type DefaultSerializer = {
+	/**
+	 * Converts a JavaScript value to a JavaScript Object Notation (JSON) string.
+	 * @param value - A JavaScript value, usually an object or array, to be converted.
+	 */
 	stringify(value: $TsFixMe): string;
+
+	/**
+	 * Converts a JavaScript Object Notation (JSON) string into an object.
+	 * @param value
+	 */
 	parse(value: $TsFixMe): $TsFixMe;
 };
 

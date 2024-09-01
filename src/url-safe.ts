@@ -77,6 +77,9 @@ function encodePayload(json: Uint8Array): Uint8Array {
 	return wantBuffer(base64Payload);
 }
 
+/**
+ * Mixed in with a regular serializer it will attempt to zlib compress the string to make it shorter if necessary. It will also base64 encode the string so that it can safely be placed in a URL.
+ */
 class URLSafeSerializerBase extends Serializer {
 	/**
 	 * Parses a payload into an object. Decodes and decompresses the payload if
@@ -104,6 +107,9 @@ class URLSafeSerializerBase extends Serializer {
 
 export class URLSafeSerializer extends URLSafeSerializerBase {}
 
+/**
+ * Works like `TimedSerializer` but dumps and loads into a URL safe string consisting of the upper and lowercase character of the alphabet as well as `'_'`, `'-'` and `'.'`.
+ */
 export class URLSafeTimedSerializer extends TimedSerializer {
 	/**
 	 * Parses a payload into an object. Decodes and decompresses the payload if

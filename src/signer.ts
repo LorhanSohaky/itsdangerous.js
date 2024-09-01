@@ -27,6 +27,9 @@ async function hashDigest(algo: string, data: Uint8Array): Promise<Uint8Array> {
 	return new Uint8Array(hash);
 }
 
+/**
+ * Subclasses must implement `getSignature` to provide signature generation functionality.
+ */
 export class SigningAlgorithm {
 	public digestMethod?: string;
 
@@ -58,6 +61,9 @@ export class SigningAlgorithm {
 	}
 }
 
+/**
+ * Provides an algorithm that does not perform any signing and returns an empty signature
+ */
 export class NoneAlgorithm extends SigningAlgorithm {
 	/**
 	 * Gets an empty signature.
@@ -68,9 +74,12 @@ export class NoneAlgorithm extends SigningAlgorithm {
 	}
 }
 
+/**
+ * Provides signature generation using HMACs.
+ */
 export class HMACAlgorithm extends SigningAlgorithm {
 	public override digestMethod: string;
-	public defaultDigestMethod = 'SHA-1';
+	public defaultDigestMethod = 'SHA-1' as const;
 
 	/**
 	 * Creates an instance of HMACAlgorithm.
@@ -104,6 +113,9 @@ export function makeKeysList(secretKey: SecretKey): Uint8Array[] {
 	return [...secretKey].map((x) => wantBuffer(x));
 }
 
+/**
+ * The key derivation methods available.
+ */
 export enum KeyDerivation {
 	Concat = 'concat',
 	DjangoConcat = 'django-concat',
@@ -111,6 +123,9 @@ export enum KeyDerivation {
 	None = 'none',
 }
 
+/**
+ * The options for the signer.
+ */
 export type SignerOptions = {
 	secretKey: SecretKey;
 	salt?: StringBuffer;
@@ -120,8 +135,11 @@ export type SignerOptions = {
 	algorithm?: SigningAlgorithm;
 };
 
+/**
+ * A signer securely signs bytes, then unsigns them to verify that the value hasn't been changed.
+ */
 export class Signer {
-	public defaultDigestMethod = 'SHA-1';
+	public defaultDigestMethod = 'SHA-1' as const;
 	public defaultKeyDerivation = KeyDerivation.DjangoConcat;
 	public secretKeys: Uint8Array[];
 	public separator: Uint8Array;
@@ -133,6 +151,12 @@ export class Signer {
 	/**
 	 * Creates an instance of Signer.
 	 * @param {SignerOptions} options - The options for the signer.
+	 * @param [options.secretKey] - The secret key to sign and verify with. Can be a list of keys, oldest to newest, to support key rotation.
+	 * @param [options.salt] - Extra key to combine with `secretKey` to distinguish signatures in different contexts. The default is `"itsdangerous.Signer"`.
+	 * @param [options.separator] - The separator to use between the signature and value. The default is `.`.
+	 * @param [options.keyDerivation] - How to derive the signing key from the secret key and salt. Possible values are `"concat"`, `"django-concat"`, or `"hmac"`. The default is `"django-concat"`.
+	 * @param [options.digestMethod] - Hash function to use when generating the HMAC signature. The default is `"SHA-1"`.
+	 * @param [options.algorithm] - The signing algorithm to use. The default is `HMACAlgorithm`.
 	 */
 	public constructor({
 		secretKey,

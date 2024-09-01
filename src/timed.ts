@@ -15,6 +15,9 @@ function isTimestampSigner(signer: Signer): signer is TimestampSigner {
 	return 'getTimestamp' in signer && 'timestampToDate' in signer && 'unsign' in signer;
 }
 
+/**
+ * Works like the regular :class:`.Signer` but also records the time of the signing and can be used to expire signatures. The `unsign` method can throw `SignatureExpiredError` if the unsigning failed because the signature is expired.
+ */
 export class TimestampSigner extends Signer {
 	/**
 	 * Gets the current timestamp in seconds.
@@ -166,6 +169,9 @@ export class TimestampSigner extends Signer {
 	}
 }
 
+/**
+ * A serializer that signs values with a timestamp.
+ */
 export class TimedSerializer extends Serializer {
 	public override signer = TimestampSigner;
 
