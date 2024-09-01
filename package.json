@@ -16,9 +16,10 @@
 	"files": ["dist", "LICENSE", "README.md"],
 	"scripts": {
 		"build": "tsup",
-		"format": "npx @biomejs/biome format --write .",
-		"lint": "npx @biomejs/biome lint --write --unsafe .",
+		"format": "biome format --write .",
+		"lint": "biome lint --error-on-warnings --write .",
 		"prepublishOnly": "npm run -s build",
+		"postinstall": "lefthook install",
 		"test": "vitest run"
 	},
 	"prettier": {
@@ -32,6 +33,7 @@
 	"devDependencies": {
 		"@biomejs/biome": "1.8.3",
 		"@types/pako": "2.0.3",
+		"lefthook": "1.7.14",
 		"tsup": "8.2.4",
 		"typescript": "5.5.4",
 		"vite": "5.4.2",
