@@ -1,3 +1,4 @@
+// Example 5: URL-Safe Serialization
 import {URLSafeSerializer} from '../dist/index.js';
 
 const authSerializer = new URLSafeSerializer({secretKey: 'secret key', salt: 'auth'});

@@ -1,28 +1,25 @@
 # Contributing
 
-When contributing to this repository, please first discuss the change you wish to make via issue before making a change.
+Thank you for your interest in contributing to this repository! Before making any changes, please first discuss the proposed change by creating an issue.
 
-Please note we have a code of conduct, please follow it in all your interactions with the project.
+Please also note that we have a code of conduct. Ensure you follow it in all your interactions related to this project.
 
 ## Licensing
 
-The code is distributed under the MIT license.  Contributors making pull
-requests must agree that they are able and willing to put their contributions
-under that license.
+The code in this repository is distributed under the MIT license. By making a pull request, you agree that your contributions will be licensed under the MIT license.
 
-## Process
+## Contribution Process
 
-The process for contributing to this project is as follows:
+To contribute to this project, please follow these steps:
 
-1. Create an issue describing the feature or bug you want to fix
-2. Fork the repository
-3. Create a branch for your change
-4. Make your changes (code, documentation, etc.)
-5. Update the README.md fiel (if necessary)
-6. Create a pull request (if necessary add screenshots, gifs, etc.)
-7. Link the pull request to the issue
-
+1. Create an issue to describe the feature you want to add or the bug you want to fix.
+2. Fork the repository.
+3. Create a new branch for your changes.
+4. Make your changes (whether code, documentation, etc.).
+5. Update the `README.md` file if necessary.
+6. Create a pull request (and include screenshots, GIFs, etc., if applicable).
+7. Link the pull request to the relevant issue.
 
 ## Thanks
 
-Thank you for investing your time in contributing to our project!
+Thank you for taking the time to contribute to our project! Your efforts are greatly appreciated.

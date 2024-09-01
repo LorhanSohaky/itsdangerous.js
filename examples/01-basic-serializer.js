@@ -1,3 +1,4 @@
+// Example 1: Basic Serialization and Signing with Serializer
 import {Serializer} from '../dist/index.js';
 
 const authSerializer = new Serializer({secretKey: 'secret key', salt: 'auth'});
