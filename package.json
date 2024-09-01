@@ -9,9 +9,9 @@
 		"url": "git+https://github.com/hampuskraft/itsdangerous.js.git"
 	},
 	"bugs": {
-    "url": "https://github.com/hampuskraft/itsdangerous.js/issues"
-  },
-	"homepage":"https://github.com/hampuskraft/itsdangerous.js#readme",
+		"url": "https://github.com/hampuskraft/itsdangerous.js/issues"
+	},
+	"homepage": "https://github.com/hampuskraft/itsdangerous.js#readme",
 	"license": "MIT",
 	"sideEffects": false,
 	"type": "module",
